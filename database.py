@@ -4,6 +4,7 @@ from templates.pulso import Pulso
 from templates.paciente import Paciente
 from templates.doctor import Doctor 
 from views import _print, _print_doctor
+from export_controller import ExportExcel
 
 
 
@@ -70,14 +71,17 @@ class Database:
 
 
 database_manager = Database()
+excel = ExportExcel("pacientes")
 # d_simmi = Doctor(2, "Luis", "Sabado", "San Marcelo")
 # database_manager.add_doctor(d_simmi)
 # doctores = database_manager.get_doctor()
 # _print_doctor(doctores)
-p_oliver = Paciente(1, "Oliver", "25", "123456789", "70", "1.70", 1)
+# p_oliver = Paciente(1, "Oliver", "25", "123456789", "70", "1.70", 1)
 # database_manager.add_paciente(p_oliver)
 pacientes = database_manager.get_paciente()
-_print(pacientes)
+excel.write_info(pacientes)
+excel.open_file()
+
 
 
 

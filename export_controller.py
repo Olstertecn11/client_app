@@ -1,5 +1,7 @@
 import xlsxwriter
 import os
+import comtypes.client
+
 
 
 class ExportExcel:
@@ -21,6 +23,15 @@ class ExportExcel:
     def open_file(self):
         file = "./" + self.name + ".xlsx"
         os.system("start EXCEL.EXE " + file)
+
+    def convert_to_pdf(self):
+        path = os.path.abspath(os.getcwd()) + "\\" + self.name   + ".xlsx"
+        pdf_path = path.replace('xlsx', 'pdf')
+        xlApp = comtypes.client.CreateObject("Excel.Application")
+        books = xlApp.Workbooks.Open(path)
+        books.ExportAsFixedFormat(0, pdf_path)
+        xlApp.Quit()
+
 
 
 

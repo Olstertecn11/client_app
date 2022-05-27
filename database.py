@@ -79,8 +79,9 @@ excel = ExportExcel("pacientes")
 # p_oliver = Paciente(1, "Oliver", "25", "123456789", "70", "1.70", 1)
 # database_manager.add_paciente(p_oliver)
 pacientes = database_manager.get_paciente()
-excel.write_info(pacientes)
-excel.open_file()
+# excel.write_info(pacientes)
+# excel.open_file()
+excel.convert_to_pdf()
 
 
 

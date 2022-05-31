@@ -2,6 +2,8 @@ from tkinter import *
 import time
 from threading import *
 import socket
+from database import * 
+from datetime import datetime
   
 root = Tk()
 root.geometry("400x300")
@@ -17,6 +19,8 @@ class _Interface(object):
         self.title = StringVar()
         self.title.set("click en `Start` 😃")
         self.createButtons()
+
+        self.database_manager = Database()
         self._socket = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
         self._socket.connect(('00:21:07:00:55:5F', 1))
         self._socket.send(b"0")
@@ -40,7 +44,14 @@ class _Interface(object):
         while self.continue_process:
             data = self._socket.recv(1024)
             print(data)
-            time.sleep(1)
+            if(data.isdigit()):
+                data = int(data)
+                now = datetime.now()
+                formatted_date = now.strftime('%Y-%m-%d %H:%M:%S')
+                p = Pulso(str(data),formatted_date, "2", "1")
+                # self.database_manager.add_pulso(p)
+                print(data)
+                time.sleep(1)
       
         print("sleep time stop")
       

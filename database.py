@@ -70,18 +70,18 @@ class Database:
     
 
 
-database_manager = Database()
-excel = ExportExcel("pacientes")
+# database_manager = Database()
+# excel = ExportExcel("pacientes")
 # d_simmi = Doctor(2, "Luis", "Sabado", "San Marcelo")
 # database_manager.add_doctor(d_simmi)
 # doctores = database_manager.get_doctor()
 # _print_doctor(doctores)
 # p_oliver = Paciente(1, "Oliver", "25", "123456789", "70", "1.70", 1)
 # database_manager.add_paciente(p_oliver)
-pacientes = database_manager.get_paciente()
+# pacientes = database_manager.get_paciente()
 # excel.write_info(pacientes)
 # excel.open_file()
-excel.convert_to_pdf()
+# excel.convert_to_pdf()
 
 
 

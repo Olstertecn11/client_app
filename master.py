@@ -15,7 +15,7 @@ class _Interface(object):
         self.frame = master
         self.continue_process = False
         self.title = StringVar()
-        self.title.set("click en `Start` :D")
+        self.title.set("click en `Start` 😃")
         self.createButtons()
         self._socket = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
         self._socket.connect(('00:21:07:00:55:5F', 1))
@@ -25,12 +25,12 @@ class _Interface(object):
 
     def stop(self):
         # Call work function
-        self.title.set("Proceso Finalzado")
+        self.title.set("Proceso Finalzado❌")
         self.continue_process = False
         self._socket.close()
   
     def start_process(self):
-        self.title.set("Leyendo datos")
+        self.title.set("Leyendo datos...✅")
         self.continue_process = True
         t1 = Thread(target=self.work)
         t1.start()

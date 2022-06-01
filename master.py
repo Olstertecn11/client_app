@@ -4,6 +4,8 @@ from threading import *
 import socket
 from database import * 
 from datetime import datetime
+from export_controller import *
+import os
   
 root = Tk()
 root.geometry("400x300")
@@ -25,6 +27,14 @@ class _Interface(object):
         self._socket.connect(('00:21:07:00:55:5F', 1))
         self._socket.send(b"0")
 
+    def open_server(self):
+        exp = ExportExcel("pulsos")
+        pulsos = self.database_manager.get_pulso()
+        exp.write_info(pulsos)
+        exp.convert_to_pdf()
+        file = "./../server_app/main.py"
+        os.system("start Python.exe " + file)
+
 
 
     def stop(self):
@@ -32,6 +42,7 @@ class _Interface(object):
         self.title.set("Proceso Finalzado❌")
         self.continue_process = False
         self._socket.close()
+        self.open_server()
   
     def start_process(self):
         self.title.set("Leyendo datos...✅")
@@ -41,17 +52,21 @@ class _Interface(object):
 
     def work(self):
         print("sleep time start")
+        last = 0
         while self.continue_process:
             data = self._socket.recv(1024)
-            print(data)
-            if(data.isdigit()):
-                data = int(data)
+            data = str(data)
+            data_s = data[2: 5]
+            if last > 4:
+                print(f"We will convert: {data_s}")
+                data_s = int(data_s)
                 now = datetime.now()
                 formatted_date = now.strftime('%Y-%m-%d %H:%M:%S')
-                p = Pulso(str(data),formatted_date, "2", "1")
-                # self.database_manager.add_pulso(p)
-                print(data)
+                p = Pulso(str(data_s),formatted_date, "2", "1")
+                self.database_manager.add_pulso(p)
+                print("saving...")
                 time.sleep(1)
+            last += 1
       
         print("sleep time stop")
       

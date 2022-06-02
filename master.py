@@ -7,15 +7,14 @@ from datetime import datetime
 from export_controller import *
 import os
   
-root = Tk()
-root.geometry("400x300")
-  
+ 
   
 
 
 class _Interface(object):
 
-    def __init__(self, master):
+    def __init__(self, master, paciente):
+        self.paciente = paciente
         self.frame = master
         self.continue_process = False
         self.title = StringVar()
@@ -75,9 +74,13 @@ class _Interface(object):
         Button(self.frame,text="Start", relief="flat",bg="#249862",font=("Arial", 12), fg="white",command = self.start_process).place(x=70, y = 150, width=100)
         Button(self.frame, text="Stop" ,relief="flat", bg="#DF0025",font=("Arial", 12), fg="white",command = self.stop).place(x= 220, y = 150, width=100)
   
+def _run_(obj):
+    root = Tk()
+    root.geometry("400x300")
+    root.title("Capturador de Datos")
+    root.configure(bg="#303030")
+    application = _Interface(root, obj)
+    root.mainloop()
 
 
-root.title("Capturador de Datos")
-root.configure(bg="#303030")
-application = _Interface(root)
-root.mainloop()
+

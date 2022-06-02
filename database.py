@@ -72,10 +72,12 @@ class Database:
 
 database_manager = Database()
 excel = ExportExcel("pulso")
-pulsos = database_manager.get_pulso()
+# pacientes = database_manager.get_paciente()
+# for i in pacientes:
+    # print(i[1])
 # for i in pulsos:
     # print(i)
-excel.write_info(pulsos)
+# excel.write_info(pulsos)
 # d_simmi = Doctor(2, "Luis", "Sabado", "San Marcelo")
 # database_manager.add_doctor(d_simmi)
 # doctores = database_manager.get_doctor()

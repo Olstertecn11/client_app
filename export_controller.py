@@ -12,12 +12,15 @@ class ExportExcel:
 
     def write_info(self, data):
         row = 0
+        moneda = self.workbook.add_format({'num_format': 'dd/mm/yy'})
         for item in data:
             for x in range(0, len(item)):
-                self.worksheet.write(row, x, item[x])
+                self.worksheet.write(row, x, item[x], moneda)
+            row += 1
 
             #item => ('Oliver', '4325435', 'jkfasldf')
         self.workbook.close()
+        print("Se ha escrito la informacion")
 
 
     def open_file(self):

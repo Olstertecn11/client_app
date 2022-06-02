@@ -1,6 +1,5 @@
 from tkinter import font
 from fpdf import FPDF
-
 datos= ((12345, 54321, '85 BPM', '30/05/2022'),(13579, 246810, '75 BPM', '31/05/2022'),(98745, 54789, '105 BPM', '01/06/2022'),(11111, 22222, '95 BPM', '02/06/2022'))
 pdf= FPDF(orientation='P',unit='mm',format='A4')
 pdf.add_page()

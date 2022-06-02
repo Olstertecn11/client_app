@@ -1,7 +1,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-workbook1 = pd.ExcelFile(r'C:\Users\Luis\Desktop\5to semestre\Progra III\client_app\pacientes.xlsx')
+ruta = "./pacientes.xlsx" 
+workbook1 = pd.ExcelFile(ruta)
 
 df= pd.read_excel(workbook1)
 
